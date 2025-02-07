@@ -1,0 +1,770 @@
+{
+  "version": "1.0",
+  "conceptualSchemaSettings": {},
+  "queries": [
+    {
+      "name": "RM00101",
+      "lineageTag": "a39ea095-e11b-418a-8a9e-a55c57f84e07",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://oef01.dynamics.gp/GPOData/BFI\"),",
+        "    RM00101_table = Source{[Name=\"RM00101\",Signature=\"table\"]}[Data],",
+        "    #\"Renamed Columns\" = Table.RenameColumns(RM00101_table,{{\"USERDEF1\", \"Channel\"}}),",
+        "    #\"Filtered Rows\" = Table.SelectRows(#\"Renamed Columns\", each ([CPRCSTNM] <> \"\")),",
+        "    #\"Replaced Value\" = Table.ReplaceValue(#\"Filtered Rows\",\"OSI Industries\",\"Chipotle\",Replacer.ReplaceText,{\"CUSTNAME\"}),",
+        "    #\"Replaced Value1\" = Table.ReplaceValue(#\"Replaced Value\",\"Les Specialties Prodal Ltee\",\"Chipotle\",Replacer.ReplaceText,{\"CUSTNAME\"}),",
+        "    #\"Renamed Columns1\" = Table.RenameColumns(#\"Replaced Value1\",{{\"CUSTNMBR\", \"CUSTNMBR\"}, {\"CUSTNAME\", \"Customer\"}}),",
+        "    #\"Replaced Value2\" = Table.ReplaceValue(#\"Renamed Columns1\",\"RYAN BASKIN\",\"RBASKIN\",Replacer.ReplaceText,{\"SLPRSNID\"})",
+        "in",
+        "    #\"Replaced Value2\""
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://oef01.dynamics.gp/GPOData/BFI\\\"),\\n    RM00101_table = Source{[Name=\\\"RM00101\\\",Signature=\\\"table\\\"]}[Data],\\n    #\\\"Renamed Columns\\\" = Table.RenameColumns(RM00101_table,{{\\\"USERDEF1\\\", \\\"Channel\\\"}}),\\n    #\\\"Filtered Rows\\\" = Table.SelectRows(#\\\"Renamed Columns\\\", each ([CPRCSTNM] <> \\\"\\\")),\\n    #\\\"Replaced Value\\\" = Table.ReplaceValue(#\\\"Filtered Rows\\\",\\\"OSI Industries\\\",\\\"Chipotle\\\",Replacer.ReplaceText,{\\\"CUSTNAME\\\"}),\\n    #\\\"Replaced Value1\\\" = Table.ReplaceValue(#\\\"Replaced Value\\\",\\\"Les Specialties Prodal Ltee\\\",\\\"Chipotle\\\",Replacer.ReplaceText,{\\\"CUSTNAME\\\"}),\\n    #\\\"Renamed Columns1\\\" = Table.RenameColumns(#\\\"Replaced Value1\\\",{{\\\"CUSTNMBR\\\", \\\"CUSTNMBR\\\"}, {\\\"CUSTNAME\\\", \\\"Customer\\\"}}),\\n    #\\\"Replaced Value2\\\" = Table.ReplaceValue(#\\\"Renamed Columns1\\\",\\\"RYAN BASKIN\\\",\\\"RBASKIN\\\",Replacer.ReplaceText,{\\\"SLPRSNID\\\"})\\nin\\n    #\\\"Replaced Value2\\\"\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Table",
+      "isHidden": false
+    },
+    {
+      "name": "Sales",
+      "lineageTag": "d081a1dc-3323-4046-aa8a-206997afff7f",
+      "navigationStepName": "Navigation",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://oef01.dynamics.gp/GPOData/BFI\"),",
+        "    Sales_table = Source{[Name=\"Sales\",Signature=\"table\"]}[Data],",
+        "    #\"Filtered Rows\" = Table.SelectRows(Sales_table, each [Document_Date] > #datetime(2015, 12, 31, 0, 0, 0)),",
+        "    #\"Replaced Value\" = Table.ReplaceValue(#\"Filtered Rows\",\"Les Specialties Prodal Ltee\",\"Chipotle\",Replacer.ReplaceText,{\"Parent_Customer_Name\"}),",
+        "    #\"Replaced Value1\" = Table.ReplaceValue(#\"Replaced Value\",\"OSI Industries\",\"Chipotle\",Replacer.ReplaceText,{\"Parent_Customer_Name\"}),",
+        "    #\"Replaced Value2\" = Table.ReplaceValue(#\"Replaced Value1\",\"ABF Beef Bulk Trim 85% - Regular Pkg Fresh\",\"ABF bulk beef trim 85-wax box\",Replacer.ReplaceText,{\"Item_Description\"}),",
+        "    #\"Replaced Value3\" = Table.ReplaceValue(#\"Replaced Value2\",\"ABF bulk beef trim 85-wax box\",\"ABF Beef Bulk Trim 85% -Wax Box\",Replacer.ReplaceText,{\"Item_Description\"}),",
+        "    #\"Filtered Rows1\" = Table.SelectRows(#\"Replaced Value3\", each ([Void_Status] = \"Normal\") and ([Salesperson_ID_from_Customer_Master] <> \"FROZENB\")),",
+        "    #\"Filtered Rows2\" = Table.SelectRows(#\"Filtered Rows1\", each [GL_Posting_Date] > #datetime(2023, 12, 31, 0, 0, 0))",
+        "in",
+        "    #\"Filtered Rows2\""
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://oef01.dynamics.gp/GPOData/BFI\\\"),\\n    Sales_table = Source{[Name=\\\"Sales\\\",Signature=\\\"table\\\"]}[Data],\\n    #\\\"Filtered Rows\\\" = Table.SelectRows(Sales_table, each [Document_Date] > #datetime(2015, 12, 31, 0, 0, 0)),\\n    #\\\"Replaced Value\\\" = Table.ReplaceValue(#\\\"Filtered Rows\\\",\\\"Les Specialties Prodal Ltee\\\",\\\"Chipotle\\\",Replacer.ReplaceText,{\\\"Parent_Customer_Name\\\"}),\\n    #\\\"Replaced Value1\\\" = Table.ReplaceValue(#\\\"Replaced Value\\\",\\\"OSI Industries\\\",\\\"Chipotle\\\",Replacer.ReplaceText,{\\\"Parent_Customer_Name\\\"}),\\n    #\\\"Replaced Value2\\\" = Table.ReplaceValue(#\\\"Replaced Value1\\\",\\\"ABF Beef Bulk Trim 85% - Regular Pkg Fresh\\\",\\\"ABF bulk beef trim 85-wax box\\\",Replacer.ReplaceText,{\\\"Item_Description\\\"}),\\n    #\\\"Replaced Value3\\\" = Table.ReplaceValue(#\\\"Replaced Value2\\\",\\\"ABF bulk beef trim 85-wax box\\\",\\\"ABF Beef Bulk Trim 85% -Wax Box\\\",Replacer.ReplaceText,{\\\"Item_Description\\\"}),\\n    #\\\"Filtered Rows1\\\" = Table.SelectRows(#\\\"Replaced Value3\\\", each ([Void_Status] = \\\"Normal\\\") and ([Salesperson_ID_from_Customer_Master] <> \\\"FROZENB\\\")),\\n    #\\\"Filtered Rows2\\\" = Table.SelectRows(#\\\"Filtered Rows1\\\", each [GL_Posting_Date] > #datetime(2023, 12, 31, 0, 0, 0))\\nin\\n    #\\\"Filtered Rows2\\\"\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "RM10101",
+      "lineageTag": "b004f905-22d3-400c-bcad-ffc01852b2ce",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://oef01.dynamics.gp/GPOData/BFI\"),",
+        "    RM10101_table = Source{[Name=\"RM10101\",Signature=\"table\"]}[Data]",
+        "in",
+        "    RM10101_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://oef01.dynamics.gp/GPOData/BFI\\\"),\\n    RM10101_table = Source{[Name=\\\"RM10101\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    RM10101_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Table",
+      "isHidden": false
+    },
+    {
+      "name": "IV00101",
+      "lineageTag": "a6ec579d-ecfb-4b5b-b254-77ddeb99fbc4",
+      "navigationStepName": "Navigation",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://oef01.dynamics.gp/GPOData/BFI\", null, [Implementation=\"2.0\"]),",
+        "    IV00101_table = Source{[Name=\"IV00101\",Signature=\"table\"]}[Data]",
+        "in",
+        "    IV00101_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://oef01.dynamics.gp/GPOData/BFI\\\", null, [Implementation=\\\"2.0\\\"]),\\n    IV00101_table = Source{[Name=\\\"IV00101\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    IV00101_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Table",
+      "isHidden": false
+    },
+    {
+      "name": "IV40600",
+      "lineageTag": "d13b5365-ffbe-4314-926b-19f3278d5072",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://oef01.dynamics.gp/GPOData/BFI\", null, [Implementation=\"2.0\"]),",
+        "    IV40600_table = Source{[Name=\"IV40600\",Signature=\"table\"]}[Data]",
+        "in",
+        "    IV40600_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://oef01.dynamics.gp/GPOData/BFI\\\", null, [Implementation=\\\"2.0\\\"]),\\n    IV40600_table = Source{[Name=\\\"IV40600\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    IV40600_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Table",
+      "isHidden": false
+    },
+    {
+      "name": "RM00301",
+      "lineageTag": "c58801bc-b5de-460f-a11e-c167c5e725f4",
+      "navigationStepName": "Navigation",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://oef01.dynamics.gp/GPOData/BFI\", null, [Implementation=\"2.0\"]),",
+        "    RM00301_table = Source{[Name=\"RM00301\",Signature=\"table\"]}[Data]",
+        "in",
+        "    RM00301_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://oef01.dynamics.gp/GPOData/BFI\\\", null, [Implementation=\\\"2.0\\\"]),\\n    RM00301_table = Source{[Name=\\\"RM00301\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    RM00301_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Table",
+      "isHidden": false
+    },
+    {
+      "name": "AccountTransactions",
+      "lineageTag": "09f74a2f-623f-4438-be9d-c79b1e383d19",
+      "navigationStepName": "Navigation",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://oef01.dynamics.gp/GPOData/CPM\", null, [Implementation=\"2.0\"]),",
+        "    AccountTransactions_table = Source{[Name=\"AccountTransactions\",Signature=\"table\"]}[Data],",
+        "    #\"Inserted Year\" = Table.AddColumn(AccountTransactions_table, \"Year\", each Date.Year([TRX_Date]), Int64.Type),",
+        "    #\"Inserted Month\" = Table.AddColumn(#\"Inserted Year\", \"Month\", each Date.Month([TRX_Date]), Int64.Type),",
+        "    #\"Inserted Month Name\" = Table.AddColumn(#\"Inserted Month\", \"Month Name\", each Date.MonthName([TRX_Date]), type text),",
+        "    #\"Filtered Rows\" = Table.SelectRows(#\"Inserted Month Name\", each [Year] >= 23)",
+        "in",
+        "    #\"Filtered Rows\""
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://oef01.dynamics.gp/GPOData/CPM\\\", null, [Implementation=\\\"2.0\\\"]),\\n    AccountTransactions_table = Source{[Name=\\\"AccountTransactions\\\",Signature=\\\"table\\\"]}[Data],\\n    #\\\"Inserted Year\\\" = Table.AddColumn(AccountTransactions_table, \\\"Year\\\", each Date.Year([TRX_Date]), Int64.Type),\\n    #\\\"Inserted Month\\\" = Table.AddColumn(#\\\"Inserted Year\\\", \\\"Month\\\", each Date.Month([TRX_Date]), Int64.Type),\\n    #\\\"Inserted Month Name\\\" = Table.AddColumn(#\\\"Inserted Month\\\", \\\"Month Name\\\", each Date.MonthName([TRX_Date]), type text),\\n    #\\\"Filtered Rows\\\" = Table.SelectRows(#\\\"Inserted Month Name\\\", each [Year] >= 23)\\nin\\n    #\\\"Filtered Rows\\\"\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "customers",
+      "lineageTag": "c2eab475-9827-457c-8183-204f6a2b4cd9",
+      "navigationStepName": "Navigation",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    customers_table = Source{[Name=\"customers\",Signature=\"table\"]}[Data]",
+        "in",
+        "    customers_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    customers_table = Source{[Name=\\\"customers\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    customers_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Table",
+      "isHidden": false
+    },
+    {
+      "name": "customers_orders",
+      "lineageTag": "8b9dc5cb-1be3-46f3-a12c-99c986a8238f",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    customers_orders_table = Source{[Name=\"customers_orders\",Signature=\"table\"]}[Data]",
+        "in",
+        "    customers_orders_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    customers_orders_table = Source{[Name=\\\"customers_orders\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    customers_orders_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "inventoryItems",
+      "lineageTag": "27170085-b8d5-4911-8292-d6ae60bfbb6f",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    inventoryItems_table = Source{[Name=\"inventoryItems\",Signature=\"table\"]}[Data]",
+        "in",
+        "    inventoryItems_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    inventoryItems_table = Source{[Name=\\\"inventoryItems\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    inventoryItems_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "inventoryItems_unitCost",
+      "lineageTag": "ebff8667-9c85-4c01-bf87-02f0227b82c3",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    inventoryItems_unitCost_table = Source{[Name=\"inventoryItems_unitCost\",Signature=\"table\"]}[Data]",
+        "in",
+        "    inventoryItems_unitCost_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    inventoryItems_unitCost_table = Source{[Name=\\\"inventoryItems_unitCost\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    inventoryItems_unitCost_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "orders",
+      "lineageTag": "f5302b8c-4a97-4103-a3a6-f8a765930c23",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_table = Source{[Name=\"orders\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_table = Source{[Name=\\\"orders\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "orders_billingAddress",
+      "lineageTag": "b883cbe8-82a2-4238-8974-1d9e9496a0bc",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_billingAddress_table = Source{[Name=\"orders_billingAddress\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_billingAddress_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_billingAddress_table = Source{[Name=\\\"orders_billingAddress\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_billingAddress_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "orders_currentSubtotalPriceSet",
+      "lineageTag": "f7334af5-5484-4c77-b02a-ef666c88072a",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_currentSubtotalPriceSet_table = Source{[Name=\"orders_currentSubtotalPriceSet\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_currentSubtotalPriceSet_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_currentSubtotalPriceSet_table = Source{[Name=\\\"orders_currentSubtotalPriceSet\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_currentSubtotalPriceSet_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "orders_currentTotalPriceSet",
+      "lineageTag": "daecafb2-6136-4977-a90c-7d5e6b33d4a1",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_currentTotalPriceSet_table = Source{[Name=\"orders_currentTotalPriceSet\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_currentTotalPriceSet_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_currentTotalPriceSet_table = Source{[Name=\\\"orders_currentTotalPriceSet\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_currentTotalPriceSet_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "orders_customerJourney",
+      "lineageTag": "2a849045-a5ec-4fc0-b874-351e94e346ff",
+      "navigationStepName": "Navigation",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_customerJourney_table = Source{[Name=\"orders_customerJourney\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_customerJourney_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_customerJourney_table = Source{[Name=\\\"orders_customerJourney\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_customerJourney_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Table",
+      "isHidden": false
+    },
+    {
+      "name": "orders_customerJourney_moments",
+      "lineageTag": "dc1b0998-bac1-40f5-8e14-9981458690bf",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_customerJourney_moments_table = Source{[Name=\"orders_customerJourney_moments\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_customerJourney_moments_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_customerJourney_moments_table = Source{[Name=\\\"orders_customerJourney_moments\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_customerJourney_moments_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "orders_fulfillments",
+      "lineageTag": "c936ae4d-b4df-4a90-a905-fc994c58533e",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_fulfillments_table = Source{[Name=\"orders_fulfillments\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_fulfillments_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_fulfillments_table = Source{[Name=\\\"orders_fulfillments\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_fulfillments_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "orders_fulfillments_trackingInfo",
+      "lineageTag": "90e3211f-1765-4b1f-8b75-131664280c17",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_fulfillments_trackingInfo_table = Source{[Name=\"orders_fulfillments_trackingInfo\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_fulfillments_trackingInfo_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_fulfillments_trackingInfo_table = Source{[Name=\\\"orders_fulfillments_trackingInfo\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_fulfillments_trackingInfo_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "orders_lineItems",
+      "lineageTag": "13c13d38-55e8-406d-a502-43f333a17bae",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_lineItems_table = Source{[Name=\"orders_lineItems\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_lineItems_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_lineItems_table = Source{[Name=\\\"orders_lineItems\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_lineItems_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "orders_lineItems_originalTotalSet",
+      "lineageTag": "b5c14ac2-d7a2-4a96-b34e-3ec9a598d3d7",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_lineItems_originalTotalSet_table = Source{[Name=\"orders_lineItems_originalTotalSet\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_lineItems_originalTotalSet_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_lineItems_originalTotalSet_table = Source{[Name=\\\"orders_lineItems_originalTotalSet\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_lineItems_originalTotalSet_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "orders_lineItems_originalUnitPriceSet",
+      "lineageTag": "8896ec11-661b-437a-87df-1c68f3351e99",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_lineItems_originalUnitPriceSet_table = Source{[Name=\"orders_lineItems_originalUnitPriceSet\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_lineItems_originalUnitPriceSet_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_lineItems_originalUnitPriceSet_table = Source{[Name=\\\"orders_lineItems_originalUnitPriceSet\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_lineItems_originalUnitPriceSet_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "orders_lineItems_product",
+      "lineageTag": "8c6659f9-66c7-45c2-8c13-d93aa9745f39",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_lineItems_product_table = Source{[Name=\"orders_lineItems_product\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_lineItems_product_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_lineItems_product_table = Source{[Name=\\\"orders_lineItems_product\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_lineItems_product_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "orders_lineItems_variant",
+      "lineageTag": "0f00581c-2b1c-4944-934a-badb4084be43",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_lineItems_variant_table = Source{[Name=\"orders_lineItems_variant\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_lineItems_variant_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_lineItems_variant_table = Source{[Name=\\\"orders_lineItems_variant\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_lineItems_variant_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "orders_originalTotalPriceSet",
+      "lineageTag": "f7ec7e81-1926-4caf-bb51-40822ce840e8",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_originalTotalPriceSet_table = Source{[Name=\"orders_originalTotalPriceSet\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_originalTotalPriceSet_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_originalTotalPriceSet_table = Source{[Name=\\\"orders_originalTotalPriceSet\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_originalTotalPriceSet_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "orders_shippingAddress",
+      "lineageTag": "7a860e77-a53c-44ca-8fdf-45a320b5594a",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_shippingAddress_table = Source{[Name=\"orders_shippingAddress\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_shippingAddress_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_shippingAddress_table = Source{[Name=\\\"orders_shippingAddress\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_shippingAddress_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "orders_totalPriceSet",
+      "lineageTag": "f64a0e5a-cd61-4dff-bf4c-7de70815644b",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    orders_totalPriceSet_table = Source{[Name=\"orders_totalPriceSet\",Signature=\"table\"]}[Data]",
+        "in",
+        "    orders_totalPriceSet_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    orders_totalPriceSet_table = Source{[Name=\\\"orders_totalPriceSet\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    orders_totalPriceSet_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "products",
+      "lineageTag": "78882f0b-9b8d-4183-9bcf-1d4737e616ce",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    products_table = Source{[Name=\"products\",Signature=\"table\"]}[Data]",
+        "in",
+        "    products_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    products_table = Source{[Name=\\\"products\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    products_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "products_options",
+      "lineageTag": "339c05d5-4f82-468e-9e75-588f103a02b7",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    products_options_table = Source{[Name=\"products_options\",Signature=\"table\"]}[Data]",
+        "in",
+        "    products_options_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    products_options_table = Source{[Name=\\\"products_options\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    products_options_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "productVariants",
+      "lineageTag": "9d6fd710-5f5c-4456-bb55-89a2ca7b9292",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    productVariants_table = Source{[Name=\"productVariants\",Signature=\"table\"]}[Data]",
+        "in",
+        "    productVariants_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    productVariants_table = Source{[Name=\\\"productVariants\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    productVariants_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "products_priceRange",
+      "lineageTag": "fce77832-cb86-4c41-b186-2d141ffd3701",
+      "text": [
+        "let",
+        "    Source = OData.Feed(\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\", null, [Implementation=\"2.0\"]),",
+        "    products_priceRange_table = Source{[Name=\"products_priceRange\",Signature=\"table\"]}[Data]",
+        "in",
+        "    products_priceRange_table"
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = OData.Feed(\\\"https://powerbi-sh-prod.alphaservesp.com/data-source-wdc/v1/446174d2-6ed0-4d77-afd3-e8666a578ed7\\\", null, [Implementation=\\\"2.0\\\"]),\\n    products_priceRange_table = Source{[Name=\\\"products_priceRange\\\",Signature=\\\"table\\\"]}[Data]\\nin\\n    products_priceRange_table\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Exception",
+      "isHidden": false
+    },
+    {
+      "name": "Parameter1",
+      "lineageTag": "dc451f85-f19d-47a2-a9ba-7081b645a480",
+      "queryGroupId": "aa4136fe-b6e9-412a-90d7-c8f4a05be4de",
+      "text": [
+        "#\"Sample File\" meta [IsParameterQuery=true, BinaryIdentifier=#\"Sample File\", Type=\"Binary\", IsParameterQueryRequired=true]"
+      ],
+      "loadAsTableDisabled": true,
+      "resultType": "Binary",
+      "isHidden": false
+    },
+    {
+      "name": "Transform Sample File",
+      "lineageTag": "5d14a7d2-c1ec-4830-9833-119dfbf9af3f",
+      "queryGroupId": "761c59f7-3e9c-4f3d-9874-d20469c1896c",
+      "text": [
+        "let",
+        "    Source = Excel.Workbook(Parameter1, null, true),",
+        "    Sheet1_Sheet = Source{[Item=\"Sheet1\",Kind=\"Sheet\"]}[Data],",
+        "    #\"Promoted Headers\" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])",
+        "in",
+        "    #\"Promoted Headers\""
+      ],
+      "loadAsTableDisabled": true,
+      "resultType": "Table",
+      "isHidden": false
+    },
+    {
+      "name": "Sample File",
+      "lineageTag": "cb74e6d0-898d-4d22-8292-d95fa841cd61",
+      "queryGroupId": "aa4136fe-b6e9-412a-90d7-c8f4a05be4de",
+      "text": [
+        "let",
+        "    Source = SharePoint.Files(\"https://oneearthfarms.sharepoint.com/sites/Reports\", [ApiVersion = 15]),",
+        "    #\"Targets xlsx_https://oneearthfarms sharepoint com/sites/Reports/Shared Documents/\" = Source{[Name=\"Targets.xlsx\",#\"Folder Path\"=\"https://oneearthfarms.sharepoint.com/sites/Reports/Shared Documents/\"]}[Content]",
+        "in",
+        "    #\"Targets xlsx_https://oneearthfarms sharepoint com/sites/Reports/Shared Documents/\""
+      ],
+      "loadAsTableDisabled": true,
+      "resultType": "Binary",
+      "isHidden": false
+    },
+    {
+      "name": "Transform File",
+      "lineageTag": "b3d7f81a-19b2-498c-9d1e-a7a106a3b6a0",
+      "queryGroupId": "aa4136fe-b6e9-412a-90d7-c8f4a05be4de",
+      "text": [
+        "let",
+        "    Source = (Parameter1 as binary) => let",
+        "    Source = Excel.Workbook(Parameter1, null, true),",
+        "    Sheet1_Sheet = Source{[Item=\"Sheet1\",Kind=\"Sheet\"]}[Data],",
+        "    #\"Promoted Headers\" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])",
+        "in",
+        "    #\"Promoted Headers\"",
+        "in",
+        "    Source"
+      ],
+      "loadAsTableDisabled": true,
+      "resultType": "Function",
+      "isHidden": false
+    },
+    {
+      "name": "Parameter2",
+      "lineageTag": "e28481cd-3716-4560-8a96-28143f2af0b0",
+      "queryGroupId": "2a18fc8e-09ab-417c-ae58-5a671c70055d",
+      "text": [
+        "#\"Sample File (2)\" meta [IsParameterQuery=true, BinaryIdentifier=#\"Sample File (2)\", Type=\"Binary\", IsParameterQueryRequired=true]"
+      ],
+      "loadAsTableDisabled": true,
+      "resultType": "Binary",
+      "isHidden": false
+    },
+    {
+      "name": "Transform Sample File (2)",
+      "lineageTag": "5f1eea0d-4e68-4adb-a028-d64922a3b30d",
+      "queryGroupId": "717634fa-44da-4cd2-9ee3-ac32f52e443d",
+      "text": [
+        "let",
+        "    Source = Excel.Workbook(Parameter2, null, true),",
+        "    Sheet1_Sheet = Source{[Item=\"Sheet1\",Kind=\"Sheet\"]}[Data],",
+        "    #\"Promoted Headers\" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])",
+        "in",
+        "    #\"Promoted Headers\""
+      ],
+      "loadAsTableDisabled": true,
+      "resultType": "Table",
+      "isHidden": false
+    },
+    {
+      "name": "Sample File (2)",
+      "lineageTag": "e918d9d7-af19-4168-b073-6a3864bebcee",
+      "queryGroupId": "2a18fc8e-09ab-417c-ae58-5a671c70055d",
+      "text": [
+        "let",
+        "    Source = SharePoint.Files(\"https://oneearthfarms.sharepoint.com/sites/Reports\", [ApiVersion = 15]),",
+        "    #\"Targets xlsx_https://oneearthfarms sharepoint com/sites/Reports/Shared Documents/\" = Source{[Name=\"Targets.xlsx\",#\"Folder Path\"=\"https://oneearthfarms.sharepoint.com/sites/Reports/Shared Documents/\"]}[Content]",
+        "in",
+        "    #\"Targets xlsx_https://oneearthfarms sharepoint com/sites/Reports/Shared Documents/\""
+      ],
+      "loadAsTableDisabled": true,
+      "resultType": "Binary",
+      "isHidden": false
+    },
+    {
+      "name": "Transform File (2)",
+      "lineageTag": "37361351-026b-4f15-a3e8-8843a5903a56",
+      "queryGroupId": "2a18fc8e-09ab-417c-ae58-5a671c70055d",
+      "text": [
+        "let",
+        "    Source = (Parameter2 as binary) => let",
+        "    Source = Excel.Workbook(Parameter2, null, true),",
+        "    Sheet1_Sheet = Source{[Item=\"Sheet1\",Kind=\"Sheet\"]}[Data],",
+        "    #\"Promoted Headers\" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])",
+        "in",
+        "    #\"Promoted Headers\"",
+        "in",
+        "    Source"
+      ],
+      "loadAsTableDisabled": true,
+      "resultType": "Function",
+      "isHidden": false
+    },
+    {
+      "name": "Targets",
+      "lineageTag": "5313190a-f8f0-4fd8-ba7c-a21922fc60a9",
+      "navigationStepName": "Navigation",
+      "text": [
+        "let",
+        "    Source = SharePoint.Files(\"https://oneearthfarms.sharepoint.com/sites/OData\", [ApiVersion = 15]),",
+        "    #\"Filtered Hidden Files1\" = Table.SelectRows(Source, each [Attributes]?[Hidden]? <> true),",
+        "    #\"Invoke Custom Function1\" = Table.AddColumn(#\"Filtered Hidden Files1\", \"Transform File (3)\", each #\"Transform File (3)\"([Content])),",
+        "    #\"Renamed Columns1\" = Table.RenameColumns(#\"Invoke Custom Function1\", {\"Name\", \"Source.Name\"}),",
+        "    #\"Removed Other Columns1\" = Table.SelectColumns(#\"Renamed Columns1\", {\"Source.Name\", \"Transform File (3)\"}),",
+        "    #\"Expanded Table Column1\" = Table.ExpandTableColumn(#\"Removed Other Columns1\", \"Transform File (3)\", Table.ColumnNames(#\"Transform File (3)\"(#\"Sample File (3)\"))),",
+        "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Expanded Table Column1\",{{\"Source.Name\", type text}, {\"CATEGORY\", type text}, {\"REVENUE TARGET\", type number}, {\"YEAR\", Int64.Type}, {\"MONTH\", type text}, {\"MONTH VALUE\", Int64.Type}, {\"Target Date\", type date}, {\"MonthName & Year\", type date}}),",
+        "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"MonthName & Year\"})",
+        "in",
+        "    #\"Removed Columns\""
+      ],
+      "isDirectQuery": false,
+      "lastLoadedAsTableFormulaText": "{\"IncludesReferencedQueries\":false,\"RootFormulaText\":\"let\\n    Source = SharePoint.Files(\\\"https://oneearthfarms.sharepoint.com/sites/OData\\\", [ApiVersion = 15]),\\n    #\\\"Filtered Hidden Files1\\\" = Table.SelectRows(Source, each [Attributes]?[Hidden]? <> true),\\n    #\\\"Invoke Custom Function1\\\" = Table.AddColumn(#\\\"Filtered Hidden Files1\\\", \\\"Transform File (3)\\\", each #\\\"Transform File (3)\\\"([Content])),\\n    #\\\"Renamed Columns1\\\" = Table.RenameColumns(#\\\"Invoke Custom Function1\\\", {\\\"Name\\\", \\\"Source.Name\\\"}),\\n    #\\\"Removed Other Columns1\\\" = Table.SelectColumns(#\\\"Renamed Columns1\\\", {\\\"Source.Name\\\", \\\"Transform File (3)\\\"}),\\n    #\\\"Expanded Table Column1\\\" = Table.ExpandTableColumn(#\\\"Removed Other Columns1\\\", \\\"Transform File (3)\\\", Table.ColumnNames(#\\\"Transform File (3)\\\"(#\\\"Sample File (3)\\\"))),\\n    #\\\"Changed Type\\\" = Table.TransformColumnTypes(#\\\"Expanded Table Column1\\\",{{\\\"Source.Name\\\", type text}, {\\\"CATEGORY\\\", type text}, {\\\"REVENUE TARGET\\\", type number}, {\\\"YEAR\\\", Int64.Type}, {\\\"MONTH\\\", type text}, {\\\"MONTH VALUE\\\", Int64.Type}, {\\\"Target Date\\\", type date}, {\\\"MonthName & Year\\\", type date}}),\\n    #\\\"Removed Columns\\\" = Table.RemoveColumns(#\\\"Changed Type\\\",{\\\"MonthName & Year\\\"})\\nin\\n    #\\\"Removed Columns\\\"\",\"ReferencedQueriesFormulaText\":{}}",
+      "loadAsTableDisabled": false,
+      "resultType": "Table",
+      "isHidden": false
+    },
+    {
+      "name": "Parameter3",
+      "lineageTag": "ba11ff36-c260-4311-9a44-0c6598b058be",
+      "queryGroupId": "6ccdd30b-1370-448f-a61e-8b53717310ef",
+      "text": [
+        "#\"Sample File (3)\" meta [IsParameterQuery=true, BinaryIdentifier=#\"Sample File (3)\", Type=\"Binary\", IsParameterQueryRequired=true]"
+      ],
+      "loadAsTableDisabled": true,
+      "resultType": "Binary",
+      "isHidden": false
+    },
+    {
+      "name": "Transform Sample File (3)",
+      "lineageTag": "5a35e21a-7b09-4396-a163-38d3c671f850",
+      "queryGroupId": "a867ae85-b565-40e4-81a6-e2d1e86efa01",
+      "text": [
+        "let",
+        "    Source = Excel.Workbook(Parameter3, null, true),",
+        "    Sheet1_Sheet = Source{[Item=\"Sheet1\",Kind=\"Sheet\"]}[Data],",
+        "    #\"Promoted Headers\" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])",
+        "in",
+        "    #\"Promoted Headers\""
+      ],
+      "loadAsTableDisabled": true,
+      "resultType": "Table",
+      "isHidden": false
+    },
+    {
+      "name": "Sample File (3)",
+      "lineageTag": "e0c8e827-fd95-4a1c-b311-842be049721e",
+      "queryGroupId": "6ccdd30b-1370-448f-a61e-8b53717310ef",
+      "text": [
+        "let",
+        "    Source = SharePoint.Files(\"https://oneearthfarms.sharepoint.com/sites/OData\", [ApiVersion = 15]),",
+        "    Navigation1 = Source{0}[Content]",
+        "in",
+        "    Navigation1"
+      ],
+      "loadAsTableDisabled": true,
+      "resultType": "Binary",
+      "isHidden": false
+    },
+    {
+      "name": "Transform File (3)",
+      "lineageTag": "5c6c259b-218a-44f4-8291-9a93342cb6b0",
+      "queryGroupId": "6ccdd30b-1370-448f-a61e-8b53717310ef",
+      "text": [
+        "let",
+        "    Source = (Parameter3 as binary) => let",
+        "    Source = Excel.Workbook(Parameter3, null, true),",
+        "    Sheet1_Sheet = Source{[Item=\"Sheet1\",Kind=\"Sheet\"]}[Data],",
+        "    #\"Promoted Headers\" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])",
+        "in",
+        "    #\"Promoted Headers\"",
+        "in",
+        "    Source"
+      ],
+      "loadAsTableDisabled": true,
+      "resultType": "Function",
+      "isHidden": false
+    }
+  ],
+  "queryGroups": [
+    {
+      "name": "Transform File from Query1",
+      "id": "761c59f7-3e9c-4f3d-9874-d20469c1896c",
+      "description": ""
+    },
+    {
+      "name": "Transform File from Query1 (2)",
+      "id": "717634fa-44da-4cd2-9ee3-ac32f52e443d",
+      "order": 2,
+      "description": ""
+    },
+    {
+      "name": "Transform File from Query2",
+      "id": "a867ae85-b565-40e4-81a6-e2d1e86efa01",
+      "order": 4,
+      "description": ""
+    },
+    {
+      "name": "Helper Queries",
+      "id": "aa4136fe-b6e9-412a-90d7-c8f4a05be4de",
+      "description": "",
+      "parentId": "761c59f7-3e9c-4f3d-9874-d20469c1896c"
+    },
+    {
+      "name": "Helper Queries",
+      "id": "2a18fc8e-09ab-417c-ae58-5a671c70055d",
+      "description": "",
+      "parentId": "717634fa-44da-4cd2-9ee3-ac32f52e443d"
+    },
+    {
+      "name": "Helper Queries",
+      "id": "6ccdd30b-1370-448f-a61e-8b53717310ef",
+      "description": "",
+      "parentId": "a867ae85-b565-40e4-81a6-e2d1e86efa01"
+    }
+  ],
+  "culture": "en-US",
+  "firewallEnabled": true
+}

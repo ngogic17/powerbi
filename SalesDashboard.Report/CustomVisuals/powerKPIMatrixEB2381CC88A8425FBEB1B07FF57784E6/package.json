@@ -1,0 +1,49 @@
+{
+  "build": "11.0.9169.153",
+  "version": "2.1.1",
+  "author": {
+    "name": "Microsoft",
+    "email": "pbicvsupport@microsoft.com"
+  },
+  "licenseTerms": "https://go.microsoft.com/fwlink/?LinkID=627540",
+  "privacyTerms": "https://go.microsoft.com/fwlink/?LinkID=627541",
+  "resources": [
+    {
+      "resourceId": "rId1",
+      "sourceType": 0,
+      "file": "resources/powerKPIMatrixEB2381CC88A8425FBEB1B07FF57784E6.js"
+    },
+    {
+      "resourceId": "rId2",
+      "sourceType": 1,
+      "file": "resources/powerKPIMatrixEB2381CC88A8425FBEB1B07FF57784E6.css"
+    },
+    {
+      "resourceId": "rId3",
+      "sourceType": 3,
+      "file": "resources/icon.png"
+    }
+  ],
+  "visual": {
+    "guid": "powerKPIMatrixEB2381CC88A8425FBEB1B07FF57784E6",
+    "name": "PowerKPIMatrix",
+    "displayName": "Power KPI Matrix",
+    "version": "2.1.1",
+    "description": "Monitor balanced scorecards and unlimited number of metrics and KPIs in a single, compact, easy to read list",
+    "supportUrl": "https://aka.ms/customvisualscommunity",
+    "gitHubUrl": "https://aka.ms/customvisualscommunity"
+  },
+  "images": {
+    "icon": {
+      "resourceId": "rId3"
+    }
+  },
+  "code": {
+    "javaScript": {
+      "resourceId": "rId1"
+    },
+    "css": {
+      "resourceId": "rId2"
+    }
+  }
+}

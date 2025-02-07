@@ -1,0 +1,1059 @@
+/**
+ *  Power BI Visualizations
+ *
+ *  Copyright (c) Microsoft Corporation
+ *  All rights reserved. 
+ *  MIT License
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the ""Software""), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in 
+ *  all copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *  THE SOFTWARE.
+ */
+/**
+ * Import Power KPI's styles
+ */
+/**
+ *  Power BI Visualizations
+ *
+ *  Copyright (c) Microsoft Corporation
+ *  All rights reserved. 
+ *  MIT License
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the ""Software""), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in 
+ *  all copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *  THE SOFTWARE.
+ */
+.vcBody,
+.powerKPI,
+.powerKPI * {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.powerKPI .visualYAxis,
+.powerKPI .visualXAxisContainer,
+.powerKPI .svgComponentContainer {
+  height: 0;
+}
+.powerKPI .italicStyle {
+  font-style: italic;
+}
+.powerKPI .boldStyle {
+  font-weight: bold;
+}
+.powerKPI .displayFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.powerKPI .columnLayout {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.powerKPI .columnReversedLayout {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+}
+.powerKPI .rowLayout {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.powerKPI .rowReversedLayout {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+.powerKPI .invisible {
+  display: none !important;
+}
+.powerKPI .hiddenElement {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+.powerKPI .textOverflow {
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.powerKPI .commonComponent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.powerKPI .commonComponent .legend {
+  margin: 0 !important;
+  position: static !important;
+  display: block !important;
+}
+.powerKPI .layoutComponent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.powerKPI .kpiComponentRow > * {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+.powerKPI .kpiComponentRow .alignLeft {
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+}
+.powerKPI .kpiComponentRow .alignCenter {
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+.powerKPI .kpiComponentRow .alignRight {
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+}
+.powerKPI .kpiComponentRow .contentLeft {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+.powerKPI .kpiComponentRow .contentRight {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+.powerKPI .kpiComponentColumn {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+.powerKPI .kpiComponentColumn > * {
+  max-width: 100%;
+}
+.powerKPI .kpiComponent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  max-width: 33%;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+.powerKPI .kpiComponent .dateKPIComponent {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+}
+.powerKPI .kpiComponent .valueKPIComponent {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+  order: 2;
+}
+.powerKPI .kpiComponent .varianceComponentWithCustomLabel {
+  -webkit-box-ordinal-group: 4;
+  -ms-flex-order: 3;
+  order: 3;
+}
+.powerKPI .kpiComponent .varianceComponentWithSymbol {
+  -webkit-box-ordinal-group: 5;
+  -ms-flex-order: 4;
+  order: 4;
+}
+.powerKPI .kpiComponent .captionKPIComponent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.powerKPI .kpiComponent .captionKPIComponent .captionKPIComponentInnerContainer {
+  max-width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.powerKPI .kpiComponent .captionKPIComponent .captionKPIComponentInnerContainer .kpiCaption,
+.powerKPI .kpiComponent .captionKPIComponent .captionKPIComponentInnerContainer .kpiCaptionContainer {
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.powerKPI .kpiComponent .captionKPIComponent .captionKPIComponentInnerContainer .kpiCaptionContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.powerKPI .kpiComponent .varianceComponentWithSymbol .captionKPIComponentInnerContainer .kpiIndicator {
+  padding: 2px 3px 0px 3px;
+}
+.powerKPI .kpiComponent .varianceComponentWithSymbol .captionKPIComponentInnerContainer .fakedKPIIndicator {
+  padding: 2px 0px 0px 3px !important;
+  width: 1em !important;
+  height: 1px !important;
+}
+.powerKPI .plot {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+.powerKPI .plot .visualYAxis {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+}
+.powerKPI .plot .verticalLineComponent .verticalLine {
+  stroke: #666;
+  pointer-events: none;
+  stroke-width: 1px;
+}
+.powerKPI .plot .svgComponent {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+  order: 2;
+  overflow: hidden;
+}
+.powerKPI .plot .svgComponent .svgComponentContainer {
+  overflow: visible;
+}
+.powerKPI .plot .svgComponent .svgComponentContainer * {
+  pointer-events: none;
+}
+.powerKPI .plot .svgComponent .multiLineComponent .dottedLine {
+  stroke-dasharray: 1, 5;
+}
+.powerKPI .plot .svgComponent .multiLineComponent .dashedLine {
+  stroke-dasharray: 5, 10;
+}
+.powerKPI .plot .svgComponent .multiLineComponent .dotDashedLine {
+  stroke-dasharray: 5, 5, 1, 5;
+}
+.powerKPI .plot .svgComponent .multiLineComponent .multiLine .line {
+  fill: transparent;
+}
+.powerKPI .plot .svgComponent .labelsComponent .label {
+  text-anchor: middle;
+  pointer-events: none;
+}
+.powerKPI .plot .visualXAxis {
+  -webkit-box-ordinal-group: 4;
+  -ms-flex-order: 3;
+  order: 3;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+.powerKPI .plot .visualXAxis .visualXAxisContainer {
+  overflow: visible;
+}
+.powerKPI .plot .visualXAxis,
+.powerKPI .plot .visualYAxis {
+  overflow: visible;
+}
+.powerKPI .plot .visualXAxis .tick line,
+.powerKPI .plot .visualYAxis .tick line,
+.powerKPI .plot .visualXAxis .tick path,
+.powerKPI .plot .visualYAxis .tick path {
+  display: none !important;
+}
+.powerKPI .subtitleComponent .subtitle {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: pre;
+}
+.vcBody,
+.powerKPIMatrix_rootComponent,
+.powerKPIMatrix_rootComponent * {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.displayFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.flexDirectionColumn {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.flexDirectionRow {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.justifyContentStart {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+.justifyContentCenter {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.justifyContentEnd {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+.justifyContentSpaceBetween {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+.alignItemsCenter {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.alignItemsStart {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+.alignItemsEnd {
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+}
+.modalWindow_rootElement {
+  position: absolute;
+  z-index: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.modalWindow_rootElement .modalWindow_rootElement-innerElement {
+  padding: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+}
+.powerKPIMatrix_rootComponent {
+  color: black;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+}
+.powerKPIMatrix_rootComponent:hover .collapserCellComponent_collapserSign,
+.powerKPIMatrix_rootComponent:focus .collapserCellComponent_collapserSign {
+  display: block !important;
+}
+.powerKPIMatrix_rootComponent .textEllipsis {
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+.powerKPIMatrix_rootComponent .boldStyle {
+  font-weight: bold;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  min-width: 325px;
+  max-width: 35%;
+  padding-right: 5px;
+  pointer-events: none;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent * {
+  pointer-events: all;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root {
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 0;
+  background-color: #f9f9f9;
+  border: 1px solid #dddddd;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingHeaderComponent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-bottom: 1px solid #C8C8C8;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingHeaderComponent .columnMappingHeaderComponent_headerElement {
+  color: #5d5d5d;
+  padding: 0 5px 0 5px;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingHeaderComponent,
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingFooterComponent {
+  background-color: #eaeaea;
+  height: 50px;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingFooterComponent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-ordinal-group: 4;
+  -ms-flex-order: 3;
+  order: 3;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-top: 1px solid #C8C8C8;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingFooterComponent .columnMappingFooterComponent_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingFooterComponent .columnMappingButtonComponent .columnMappingButtonComponent_button {
+  line-height: 1em;
+  padding: 9px 20px;
+  background-color: #F2C811;
+  color: #000;
+  font-weight: 500;
+  min-width: 120px;
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingFooterComponent .columnMappingButtonComponent .columnMappingButtonComponent_button:hover,
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingFooterComponent .columnMappingButtonComponent .columnMappingButtonComponent_button:active {
+  background-color: #DDB612;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingFooterComponent_container,
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingDropDownComponent_container,
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingApplyButtonComponent_container,
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingGroupComponent_title,
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingHeaderComponent_headerElement {
+  width: 90%;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingComponent_scrollable {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+  order: 2;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  overflow: auto;
+  max-height: 90%;
+  max-width: 100%;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingComponent_scrollable .columnMappingDropDownComponent_container,
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingComponent_scrollable .columnMappingApplyButtonComponent_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingComponent_scrollable .columnMappingColumnSelectorComponent {
+  padding: 10px 0 0 0;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingComponent_scrollable .columnMappingColumnSelectorComponent .columnMappingGroupComponent .columnMappingGroupComponent_titleContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingComponent_scrollable .columnMappingColumnSelectorComponent .columnMappingGroupComponent .columnMappingGroupComponent_titleContainer .columnMappingGroupComponent_title {
+  padding: 5px 0 10px 0;
+  font-weight: 500;
+  color: black;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingComponent_scrollable .columnMappingColumnSelectorComponent .columnMappingGroupComponent .columnMappingDropDownComponent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingComponent_scrollable .columnMappingColumnSelectorComponent .columnMappingGroupComponent .columnMappingDropDownComponent .columnMappingDropDownComponent_container {
+  padding-bottom: 10px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingComponent_scrollable .columnMappingColumnSelectorComponent .columnMappingGroupComponent .columnMappingDropDownComponent .columnMappingDropDownComponent_container .columnMappingDropDownComponent_caption {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingComponent_scrollable .columnMappingColumnSelectorComponent .columnMappingGroupComponent .columnMappingDropDownComponent .columnMappingDropDownComponent_container .columnMappingDropDownComponent_caption .columnMappingDropDownComponent_captionIndicator {
+  font-size: 1.1em;
+  color: #33669A;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingComponent_scrollable .columnMappingColumnSelectorComponent .columnMappingGroupComponent .columnMappingDropDownComponent .columnMappingDropDownComponent_container .columnMappingDropDownComponent_captionIndicatorHelpMessageContainer {
+  position: absolute;
+  display: none;
+  color: black;
+  margin-top: 35px;
+  max-width: 380px;
+  padding: 12px;
+  vertical-align: baseline;
+  line-height: 21px;
+  background-color: #FFF;
+  box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.1s ease-in-out;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  z-index: 9999999;
+  /*
+                                     * This rule describes a small arrow of the element.
+                                     **/
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingComponent_scrollable .columnMappingColumnSelectorComponent .columnMappingGroupComponent .columnMappingDropDownComponent .columnMappingDropDownComponent_container .columnMappingDropDownComponent_captionIndicatorHelpMessageContainer:after {
+  border-color: transparent transparent #FFF;
+  top: -15px;
+  left: 13px;
+  content: "";
+  border-style: solid;
+  border-width: 8px;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+.powerKPIMatrix_rootComponent .columnMappingComponent .columnMappingComponent_root .columnMappingComponent_scrollable .columnMappingColumnSelectorComponent .columnMappingGroupComponent .columnMappingDropDownComponent .columnMappingDropDownComponent_container .columnMappingDropDownComponent_select {
+  font-weight: 500;
+  min-height: 40px;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+.powerKPIMatrix_rootComponent .tableComponent {
+  max-height: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.powerKPIMatrix_rootComponent .tableComponent .textNoWrap {
+  white-space: nowrap;
+  word-wrap: normal;
+}
+.powerKPIMatrix_rootComponent .tableComponent .textWrap {
+  white-space: normal;
+  word-wrap: normal;
+}
+.powerKPIMatrix_rootComponent .tableComponent .textBreakWord {
+  white-space: normal;
+  word-wrap: break-word;
+}
+.powerKPIMatrix_rootComponent .tableComponent .italicStyle {
+  font-style: italic;
+}
+.powerKPIMatrix_rootComponent .tableComponent .bodyComponent {
+  overflow: auto;
+  -webkit-box-flex: 2;
+  -ms-flex-positive: 2;
+  flex-grow: 2;
+}
+.powerKPIMatrix_rootComponent .tableComponent .cellComponent {
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  font-size: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.powerKPIMatrix_rootComponent .tableComponent .cellComponent .textCellComponent_text,
+.powerKPIMatrix_rootComponent .tableComponent .cellComponent .kpiIndicatorCellComponent_indicator {
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  max-height: 100%;
+  max-width: 100%;
+}
+.powerKPIMatrix_rootComponent .tableComponent .cellComponent .kpiIndicatorCellComponent_indicator {
+  min-width: 1em;
+}
+.powerKPIMatrix_rootComponent .tableComponent .cellComponent .textCellComponent_text_hyperlink {
+  cursor: pointer;
+}
+.powerKPIMatrix_rootComponent .tableComponent .textCellComponent_image,
+.powerKPIMatrix_rootComponent .tableComponent .collapserCellComponent_collapserSign {
+  width: 1.2em;
+  min-width: 1.2em;
+  height: 1.2em;
+  min-height: 1.2em;
+}
+.powerKPIMatrix_rootComponent .tableComponent .textCellComponent .textCellComponent_image {
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-right: 5px;
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+}
+.powerKPIMatrix_rootComponent .tableComponent .textCellComponent .textCellComponent_text {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+  order: 2;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorCellComponent.kpiIndicatorPosition_left .kpiIndicatorCellComponent_indicator {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorCellComponent.kpiIndicatorPosition_left .textCellComponent_text {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+  order: 2;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorCellComponent.kpiIndicatorPosition_right .kpiIndicatorCellComponent_indicator {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+  order: 2;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorCellComponent.kpiIndicatorPosition_right .textCellComponent_text {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorCellComponent.verticalAlignment_top .kpiIndicatorCellComponent_indicator,
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorCellComponent.verticalAlignment_center .kpiIndicatorCellComponent_indicator,
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorCellComponent.verticalAlignment_bottom .kpiIndicatorCellComponent_indicator,
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorCellComponent.verticalAlignment_top .textCellComponent_text,
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorCellComponent.verticalAlignment_center .textCellComponent_text,
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorCellComponent.verticalAlignment_bottom .textCellComponent_text {
+  -webkit-box-ordinal-group: 1;
+}
+.powerKPIMatrix_rootComponent .tableComponent .horizontalAlignment_left {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+.powerKPIMatrix_rootComponent .tableComponent .horizontalAlignment_left .textWrap,
+.powerKPIMatrix_rootComponent .tableComponent .horizontalAlignment_left .textBreakWord {
+  text-align: left;
+}
+.powerKPIMatrix_rootComponent .tableComponent .horizontalAlignment_center {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.powerKPIMatrix_rootComponent .tableComponent .horizontalAlignment_center .textWrap,
+.powerKPIMatrix_rootComponent .tableComponent .horizontalAlignment_center .textBreakWord {
+  text-align: center;
+}
+.powerKPIMatrix_rootComponent .tableComponent .horizontalAlignment_right {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+.powerKPIMatrix_rootComponent .tableComponent .horizontalAlignment_right .textWrap,
+.powerKPIMatrix_rootComponent .tableComponent .horizontalAlignment_right .textBreakWord {
+  text-align: right;
+}
+.powerKPIMatrix_rootComponent .tableComponent .verticalAlignment_top {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+.powerKPIMatrix_rootComponent .tableComponent .verticalAlignment_center {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.powerKPIMatrix_rootComponent .tableComponent .verticalAlignment_bottom {
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorRowDirectionClassName.kpiIndicatorPosition_left .kpiIndicatorCellComponent_indicator {
+  padding-right: 3px;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorRowDirectionClassName.kpiIndicatorPosition_right .kpiIndicatorCellComponent_indicator {
+  padding-left: 3px;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorColumnDirectionClassName {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorColumnDirectionClassName.kpiIndicatorPosition_left .kpiIndicatorCellComponent_indicator {
+  padding-bottom: 3px;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorColumnDirectionClassName.kpiIndicatorPosition_right .kpiIndicatorCellComponent_indicator {
+  padding-top: 3px;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorColumnDirectionClassName.horizontalAlignment_left {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorColumnDirectionClassName.horizontalAlignment_center {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorColumnDirectionClassName.horizontalAlignment_right {
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorColumnDirectionClassName.verticalAlignment_top {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorColumnDirectionClassName.verticalAlignment_center {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.powerKPIMatrix_rootComponent .tableComponent .kpiIndicatorColumnDirectionClassName.verticalAlignment_bottom {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+.powerKPIMatrix_rootComponent .tableComponent .sparklineCellComponent .sparklineCellComponent_svg {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+}
+.powerKPIMatrix_rootComponent .tableComponent .sparklineCellComponent .lineComponent .lineComponent_line {
+  fill: transparent;
+}
+.powerKPIMatrix_rootComponent .tableComponent .sparklineCellComponent .lineComponent .dottedLine {
+  stroke-dasharray: 1, 5;
+}
+.powerKPIMatrix_rootComponent .tableComponent .sparklineCellComponent .lineComponent .dashedLine {
+  stroke-dasharray: 5, 10;
+}
+.powerKPIMatrix_rootComponent .tableComponent .sparklineCellComponent .lineComponent .dotDashedLine {
+  stroke-dasharray: 5, 5, 1, 5;
+}
+.powerKPIMatrix_rootComponent .tableComponent .sparklineCellComponent .verticalLineComponent .verticalLine {
+  pointer-events: none;
+}
+.powerKPIMatrix_rootComponent .tableComponent .collapserCellComponent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.powerKPIMatrix_rootComponent .tableComponent .collapserCellComponent .collapserCellComponent_collapserSign {
+  display: none;
+  margin-left: 5px;
+  padding-top: 2px;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  -webkit-box-ordinal-group: 4;
+  -ms-flex-order: 3;
+  order: 3;
+}
+.powerKPIMatrix_rootComponent .tableComponent .headerRowComponent_container {
+  -webkit-box-flex: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  overflow: hidden;
+}
+.powerKPIMatrix_rootComponent .draggableComponent::before {
+  content: "";
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.powerKPIMatrix_rootComponent .draggableComponentBeforeVertical {
+  height: 100%;
+  width: 20px;
+  left: -10px;
+  top: 0;
+}
+.powerKPIMatrix_rootComponent .draggableComponentBeforeHorizontal {
+  width: 100%;
+  height: 20px;
+  top: -10px;
+  left: 0;
+}
+.powerKPIMatrix_rootComponent .textCellComponent_text,
+.powerKPIMatrix_rootComponent .textCellComponent_image,
+.powerKPIMatrix_rootComponent .sparklineCellComponent_svg,
+.powerKPIMatrix_rootComponent .kpiIndicatorCellComponent_indicator,
+.powerKPIMatrix_rootComponent .collapserCellComponent_collapserSign {
+  z-index: 1;
+}
+.powerKPIMatrix_rootComponent .bodyRowComponent_clickAction .textCellComponent:hover,
+.powerKPIMatrix_rootComponent .bodyRowComponent_clickAction .textCellComponent:active {
+  background-color: rgba(51, 51, 51, 0.3) !important;
+}
+.powerKPIMatrix_rootComponent .bodyRowComponent_clickAction .cellComponent:hover,
+.powerKPIMatrix_rootComponent .bodyRowComponent_clickAction .cellComponent:active {
+  cursor: pointer;
+}
+.powerKPIMatrix_rootComponent .tableComponent_row {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.powerKPIMatrix_rootComponent .tableComponent_row .rowComponent .draggableComponent {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  height: 2px;
+  min-height: 2px;
+  max-height: 2px;
+  cursor: row-resize;
+}
+.powerKPIMatrix_rootComponent .tableComponent_row .rowComponent .draggableComponent::before {
+  width: 100%;
+  height: 20px;
+  top: -10px;
+  left: 0;
+}
+.powerKPIMatrix_rootComponent .tableComponent_row .rowComponent .rowComponent_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.powerKPIMatrix_rootComponent .tableComponent_row .rowComponent .rowComponent_container .draggableComponent {
+  width: 2px;
+  min-width: 2px;
+  max-width: 2px;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  cursor: col-resize;
+}
+.powerKPIMatrix_rootComponent .tableComponent_row .rowComponent .rowComponent_container .draggableComponent::before {
+  height: 100%;
+  width: 20px;
+  left: -10px;
+  top: 0;
+}
+.powerKPIMatrix_rootComponent .tableComponent_row .rowComponent .bodyRowComponent_children_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.powerKPIMatrix_rootComponent .tableComponent_row .rowComponent .bodyRowComponent_row_container .bodyRowComponent {
+  width: 100%;
+}
+.powerKPIMatrix_rootComponent .tableComponent_row .kpiIndicatorRowDirectionClassName.kpiStatus_horizontalAlignment_center .textCellComponent_text,
+.powerKPIMatrix_rootComponent .tableComponent_row .kpiIndicatorRowDirectionClassName.kpiStatus_horizontalAlignment_center .kpiIndicatorCellComponent_indicator {
+  width: 50%;
+}
+.powerKPIMatrix_rootComponent .tableComponent_row .kpiIndicatorRowDirectionClassName.kpiStatus_horizontalAlignment_center.kpiIndicatorPosition_left .kpiIndicatorCellComponent_indicator {
+  text-align: right;
+}
+.powerKPIMatrix_rootComponent .tableComponent_row .kpiIndicatorRowDirectionClassName.kpiStatus_horizontalAlignment_center.kpiIndicatorPosition_left .textCellComponent_text {
+  text-align: left;
+}
+.powerKPIMatrix_rootComponent .tableComponent_row .kpiIndicatorRowDirectionClassName.kpiStatus_horizontalAlignment_center.kpiIndicatorPosition_right .kpiIndicatorCellComponent_indicator {
+  text-align: left;
+}
+.powerKPIMatrix_rootComponent .tableComponent_row .kpiIndicatorRowDirectionClassName.kpiStatus_horizontalAlignment_center.kpiIndicatorPosition_right .textCellComponent_text {
+  text-align: right;
+}
+.powerKPIMatrix_rootComponent .tableComponent_row .tabular {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.powerKPIMatrix_rootComponent .tableComponent_column {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.powerKPIMatrix_rootComponent .tableComponent_column .rowComponent .headerRowComponent_container {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.powerKPIMatrix_rootComponent .tableComponent_column .rowComponent .draggableComponent {
+  width: 2px;
+  min-width: 2px;
+  max-width: 2px;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  cursor: col-resize;
+}
+.powerKPIMatrix_rootComponent .tableComponent_column .rowComponent .draggableComponent::before {
+  height: 100%;
+  width: 20px;
+  left: -10px;
+  top: 0;
+}
+.powerKPIMatrix_rootComponent .tableComponent_column .rowComponent .rowComponent_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.powerKPIMatrix_rootComponent .tableComponent_column .rowComponent .rowComponent_container .draggableComponent {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  height: 2px;
+  min-height: 2px;
+  max-height: 2px;
+  cursor: row-resize;
+}
+.powerKPIMatrix_rootComponent .tableComponent_column .rowComponent .rowComponent_container .draggableComponent::before {
+  width: 100%;
+  height: 20px;
+  top: -10px;
+  left: 0;
+}
+.powerKPIMatrix_rootComponent .tableComponent_column .rowComponent .bodyRowComponent_root_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.powerKPIMatrix_rootComponent .tableComponent_column .rowComponent .bodyRowComponent_root_container.horizontalAlignment_left {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+.powerKPIMatrix_rootComponent .tableComponent_column .rowComponent .bodyRowComponent_root_container.horizontalAlignment_center {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.powerKPIMatrix_rootComponent .tableComponent_column .rowComponent .bodyRowComponent_root_container.horizontalAlignment_right {
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+}
+.powerKPIMatrix_rootComponent .tableComponent_column .bodyComponent,
+.powerKPIMatrix_rootComponent .tableComponent_column .bodyRowComponent_children_container,
+.powerKPIMatrix_rootComponent .tableComponent_column .common,
+.powerKPIMatrix_rootComponent .tableComponent_column .headerRowComponent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.visual-icon.powerKPIMatrixEB2381CC88A8425FBEB1B07FF57784E6 {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAXNJREFUOBFjNJ254z8DFQETFc2CGLVq1ar/6ACbGEgNLnGYfpA8Cz4XXtp0muHWgSsMag46DHp+pqhKgQH18NxdhqPz9oDFo6amg2m8BoIM+/3jN9hQZAP///vHcHj2bgZGRkaGyMmpDIxMiJBDsFDtB/NALmPlYAW7EC4NdNny3NkM+n5mDLapbiiGgdTgdSHIVcguAxvKyMAA8x7cEiQGIyggkfiUM7HFHDYxYmMZbxiCnHv72xcMVzPvWsMAwjDQcPcqjMmA18D7378yWJzYywCikcFftxAGoIvBQk13rzE03bkGl8YbKfk3LjC8//2LAURvMrSGawIxQEmGaedqsNh+MwcwDSLwGohuCFwXkAFyJTYw+GMZr5f/T4fkT5DXGDNnYvEhMGLunGX4v3s2UH4GWB5vLGMxASH0/x8Dww6gIe+fMTBmTAeKA7MQEOB1IVgFFgLmcsbwegYGIUmgCohhIKV4DcTuTVzeh9hM9VgGAIsSTL+cI6FpAAAAAElFTkSuQmCC);
+}
